@@ -14,7 +14,7 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
 
     <!-- Calcite-Bootstrap -->
-    <link rel="stylesheet" href="http://esri.github.io/calcite-bootstrap/assets/css/calcite-bootstrap.css">
+    <link rel="stylesheet" href="http://esri.github.io/calcite-bootstrap/assets/css/calcite-bootstrap.css" id="calcite">
 
     <!-- Calcite-Maps -->
     <link rel="stylesheet" href="../css/calcite-maps.css">
@@ -63,13 +63,14 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand">
-                    <span class="glyphicon glyphicon-map-marker"></span>
-                </a>
+            <img class="navbar-logo pull-left" id="site-logo"></img>
+
+                <div class="navbar-brand">
+                    <!-- <span class="glyphicon glyphicon-map-marker"></span> -->
+                    <div id="site-title" class="navbar-title" data-toggle="modal" data-target="#modalSplash">Calcite-Maps ArcGIS JS 4.0 Dojo</div>
+                </div>
 
                 <div class="navbar-info">
-                    <div class="navbar-title text-overflow" data-toggle="modal" data-target="#modalSplash">Calcite-Maps ArcGIS JS 4.0 Dojo</div>
-                    <div class="navbar-subtitle text-overflow">Design Beautiful Mapping Apps</div> 
                 </div>
             </div>
 
@@ -589,6 +590,8 @@
             "esri/widgets/Search",
             "esri/core/watchUtils",
             "dojo/query",
+            "dojo/_base/xhr",
+            "esri/geometry/Extent",
 
             "bootstrap/Collapse", 
             "bootstrap/Dropdown",
@@ -599,44 +602,107 @@
             "calcite-maps/calcitemapsdojo",
             "calcite-extras/panelsettingsdojo",
             "dojo/domReady!"
-        ], function(Map, Basemap, MapView, SceneView, Search, watchUtils, query) {
+        ], function(Map, Basemap, MapView, SceneView, Search, watchUtils, query, xhr, Extent) {
             
-            // Map 
-            map = new Map({
-                basemap: "vector-streets"
-            });
 
-            // Map View
-            mapView = new MapView({
-                container: "mapViewDiv",
-                map: map,
-                center: [-118.30, 34],
-                zoom: 6
-            });
+                var gSiteId = null
+                var getUrlParameter = function(sParam) {
+                    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                        sURLVariables = sPageURL.split('&'),
+                        sParameterName,
+                        i;
 
-            mapView.popup.anchor = "top";
-         
-            mapScene = new Map({
-                basemap: "streets"
-            });
+                    for (i = 0; i < sURLVariables.length; i++) {
+                        sParameterName = sURLVariables[i].split('=');
 
-            // Scene View
-            sceneView = new SceneView({
-                container: "sceneViewDiv",
-                map: mapScene,
-                center: [-118, 34],
-                zoom: 4
-            });
-            sceneView.popup.anchor = "top";
+                        if (sParameterName[0] === sParam) {
+                            return sParameterName[1] === undefined ? true : sParameterName[1];
+                        }
+                    }
+                };              
+                var cssUrl = function(siteId) {
+                    return "https://opendatadev.arcgis.com/api/v2/sites/" + siteId + "/css/css";
+                }
+                var appendCSS = function(siteId) {
+                    if(siteId === undefined || siteId === null) {
+                        return;
+                    }
+                    var calcite = document.getElementById("calcite");
 
-            activeView = mapView;
+                    var link = document.createElement("link")
+                    link.href = cssUrl(siteId);
+                    link.type = "text/css";
+                    link.rel = "stylesheet";
+                    link.id = "calcite";
+                    document.getElementsByTagName("head")[0].appendChild(link);
+                    setTimeout(function() {
+                        if(calcite !== undefined && calcite !== null) {
+                            calcite.remove();
+                        }
+                    }, 2000)            
+                    return false;
+                }
+                var updateSite = function(siteConfig) {
+                    console.log("Site Config", siteConfig)
+                    query("#site-title")[0].innerText = siteConfig.data.attributes.layout.header.component.settings.title;
+                    query("#site-logo")[0].src = siteConfig.data.attributes.layout.header.component.settings.logoUrl;
 
-            // Search - Nav - TODO - detach/attach
-            searchDivNav = createSearchWidget("searchNavDiv");
+                    var extent = new Extent(siteConfig.data.attributes.defaultExtent);
+                    renderMap(extent);
+                    // mapView.extent = ext;        
+                }
+                var getSite = function(siteId) {
+                    if(siteId === undefined || siteId === null) {
+                        return;
+                    }
+                    xhr.get({
+                      url: "https://opendatadev.arcgis.com/api/v2/sites/" + siteId,
+                      load: updateSite,
+                      handleAs: "json"
+                    });
+                    
+                    appendCSS(siteId);
+                    return false;
+                }
+                getSite(gSiteId = getUrlParameter('site'));      
+                
+            function renderMap(extent) {
 
-            // Search - Panel - TODO - detach/attach
-            searchWidgetPanel = createSearchWidget("searchDivPanel");
+                // Map 
+                map = new Map({
+                    basemap: "gray"
+                });
 
+                // Map View
+                mapView = new MapView({
+                    container: "mapViewDiv",
+                    map: map,
+                    extent: extent
+                });
+
+                mapView.popup.anchor = "top";
+             
+                mapScene = new Map({
+                    basemap: "gray"
+                });
+
+                // Scene View
+                sceneView = new SceneView({
+                    container: "sceneViewDiv",
+                    map: mapScene,
+                    center: [-118, 34],
+                    zoom: 4
+                });
+                sceneView.popup.anchor = "top";
+
+                activeView = mapView;
+
+                // Search - Nav - TODO - detach/attach
+                searchDivNav = createSearchWidget("searchNavDiv");
+
+                // Search - Panel - TODO - detach/attach
+                searchWidgetPanel = createSearchWidget("searchDivPanel");
+            }
             function createSearchWidget(parentId) {
                 var search = new Search({
                     view: activeView,

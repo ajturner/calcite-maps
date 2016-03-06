@@ -9,6 +9,7 @@ define([
   "dojo/query",
   "dojo/dom-class",
   "dojo/domReady!"
+
 ], function(query, domClass) {
   
 		var _mobile = isMobile();
@@ -119,5 +120,6 @@ define([
 		function isMobile(){
 			return query(".navbar-toggle").style("display")[0] !== "none";
 		}
+
 	}
 );
