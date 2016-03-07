@@ -8,6 +8,9 @@
   margin: 15px;
 }*/
 
+.esri-ui-top-left {
+  top: 80px;
+}
 .esriPopup {
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   font-size: 16px;

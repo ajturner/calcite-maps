@@ -22,8 +22,10 @@
     <link rel="stylesheet" href="../css/themes/themes.css">
 
     <!-- ArcGIS JS 4.0 Core CSS -->
-    <link rel="stylesheet" href="http://js.arcgis.com/4.0beta1/esri/css/esri.css">
+    <!-- <link rel="stylesheet" href="http://js.arcgis.com/4.0beta1/esri/css/esri.css"> -->
     <!--link rel="stylesheet" href="http://jsdev.arcgis.com/4.0beta2/esri/css/main.css"-->
+  <link rel="stylesheet" href="https://jsdev.arcgis.com/4.0/esri/css/main.css">
+
 
     <!-- ArcGIS JS 4.0 Digits CSS Overrides -->
     <!-- TODO - This will go away when the dojo styles are updated in core. -->
@@ -67,7 +69,7 @@
 
                 <div class="navbar-brand">
                     <!-- <span class="glyphicon glyphicon-map-marker"></span> -->
-                    <div id="site-title" class="navbar-title" data-toggle="modal" data-target="#modalSplash">Calcite-Maps ArcGIS JS 4.0 Dojo</div>
+                    <div id="site-title" class="navbar-title" data-toggle="modal" data-target="#modalSplash">Calcite-Maps</div>
                 </div>
 
                 <div class="navbar-info">
@@ -573,7 +575,8 @@
     </script>
 
     <!-- ArcGIS JS 4.0 lirbaries -->
-    <script src="//js.arcgis.com/4.0beta1/"></script>
+    <!-- <script src="//js.arcgis.com/4.0beta1/"></script> -->
+    <script src="//jsdev.arcgis.com/4.0/"></script>
 
     <script>
 
@@ -582,6 +585,7 @@
         // ======
         
         var map, mapScene, mapView, sceneView, searchWidgetNav, searchWidgetPanel, activeView;
+        var vtlayer;
 
         require(["esri/Map",
             "esri/Basemap",
@@ -592,6 +596,7 @@
             "dojo/query",
             "dojo/_base/xhr",
             "esri/geometry/Extent",
+            "esri/layers/VectorTileLayer",
 
             "bootstrap/Collapse", 
             "bootstrap/Dropdown",
@@ -602,7 +607,7 @@
             "calcite-maps/calcitemapsdojo",
             "calcite-extras/panelsettingsdojo",
             "dojo/domReady!"
-        ], function(Map, Basemap, MapView, SceneView, Search, watchUtils, query, xhr, Extent) {
+        ], function(Map, Basemap, MapView, SceneView, Search, watchUtils, query, xhr, Extent, VectorTileLayer) {
             
 
                 var gSiteId = null
@@ -642,14 +647,32 @@
                     }, 2000)            
                     return false;
                 }
+                var styleMap = function(extent, style) {
+                    // #30588D
+                    console.log("Style", style)
+
+                    renderMap(extent, style);
+
+                }
                 var updateSite = function(siteConfig) {
                     console.log("Site Config", siteConfig)
                     query("#site-title")[0].innerText = siteConfig.data.attributes.layout.header.component.settings.title;
                     query("#site-logo")[0].src = siteConfig.data.attributes.layout.header.component.settings.logoUrl;
-
                     var extent = new Extent(siteConfig.data.attributes.defaultExtent);
-                    renderMap(extent);
-                    // mapView.extent = ext;        
+
+                    xhr.get({
+                      url: "style.json",
+                      load: function(data) { 
+                        var colorPrimary = siteConfig.data.attributes.style["$brand-primary"]
+                        var colorSecondary = siteConfig.data.attributes.style["$brand-secondary"]
+                        
+                        data = data.replace(/#{brand-primary}/g, colorPrimary).replace(/#{brand-secondary}/g, colorSecondary);
+                        
+                        style = JSON.parse(data);
+                        console.log("Loaded Style", style)
+                        styleMap(extent, style)
+                    }
+                    });
                 }
                 var getSite = function(siteId) {
                     if(siteId === undefined || siteId === null) {
@@ -666,14 +689,29 @@
                 }
                 getSite(gSiteId = getUrlParameter('site'));      
                 
-            function renderMap(extent) {
+            function renderMap(extent, vectorStyle) {
 
                 // Map 
                 map = new Map({
-                    basemap: "gray"
+                    basemap: "gray-vector"
                 });
+                // vectorStyle = "https://www.arcgis.com/sharing/rest/content/items/f96366254a564adda1dc468b447ed956/resources/styles/root.json";
+                // vectorStyle = "style.json"
+                vtlayer = new VectorTileLayer(vectorStyle);
+                map.add(vtlayer); 
 
-                // Map View
+                // var s = {
+                //     "layers": [
+                //         {
+                //             "paint": {
+                //                 "background-color": "#FF0F1A"
+                //             },
+                //             "type": "background",
+                //             "id": "background"
+                //         }] };
+                // console.log("Style",s)       
+                // vtlayer.setStyle(s);
+                
                 mapView = new MapView({
                     container: "mapViewDiv",
                     map: map,
