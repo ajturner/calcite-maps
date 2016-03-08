@@ -561,7 +561,7 @@
         var dojoConfig = {
             packages: [{
                 name: "bootstrap",
-                location: "//rawgit.com/xsokev/Dojo-Bootstrap/master"
+                location: location.pathname.replace(/\/[^/]+$/, "") + "/../js/Dojo-Bootstrap"
             },
             {
                 name: "calcite-maps",
