@@ -45,7 +45,7 @@
         }
         .esriSearch .esriContainer .esriInput {
             width: 175px;
-        }   
+        }
     </style>
 
 </head>
@@ -78,10 +78,10 @@
 
             <!-- Navbar collapse - main -->
             <div id="mainNav" class="collapse navbar-collapse" aria-expanded="false">
-                <ul class="nav navbar-nav navbar-right">                    
+                <ul class="nav navbar-nav navbar-right">
                    <!-- Map and Scene - NOTE: Removed on mobile devices due to 3D support -->
                     <li class="active"><a id="mapNav" class="hidden-xs hidden-sm" href="#2dTab" aria-controls="2Dtab" aria-expanded="true" role="tab" data-toggle="tab" data-tooltip="tip" title="2D View" data-placement="bottom">Map</a></li>
-                    <li><a id="sceneNav" class="hidden-xs hidden-sm" href="#3dTab" aria-controls="3Dtab" role="tab" data-toggle="tab" data-tooltip="tip" title="3D View" data-placement="bottom">Scene</a></li>                  
+                    <li><a id="sceneNav" class="hidden-xs hidden-sm" href="#3dTab" aria-controls="3Dtab" role="tab" data-toggle="tab" data-tooltip="tip" title="3D View" data-placement="bottom">Scene</a></li>
                     <li><form id="searchNav" class="navbar-form navbar-search hidden-xs visible-sm visible-md visible-lg"><div id="searchNavDiv"></div></form></li>
                     <!-- Options dropdown menu -->
                     <li class="dropdown" role="presentation">
@@ -98,7 +98,7 @@
                             <li><a id="shareNavMenu" class="" role="button" data-target="#panelShare" aria-haspopup="true"><span class="glyphicon glyphicon-share"></span> Share</a></li>
                             <li><a id="settingsMenu"class="" role="button" data-target="#panelSettings" aria-haspopup="true"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
                         </ul>
-                    </li>      
+                    </li>
                 </ul><!--/.nav -->
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
@@ -161,24 +161,24 @@
     <div class="panel-container">
         <!-- Collapsable panel -->
         <div id="panelAccordion" class="panel-group"  role="tablist" aria-multiselectable="true">
-  
+
             <!-- Info Panel -->
 
              <div id="panelInfo" class="panel panel-default collapse">
-                
+
                 <div id="headingInfo" class="panel-heading" role="tab">
                     <!-- <div class="panel-title hidden-xs"> -->
                     <div class="panel-title">
                         <a class="panel-toggle" role="button" data-toggle="collapse" href="#collapseInfo" data-parent="#panelAccordion" aria-expanded="true" aria-controls="collapseInfo"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Info</a>
-                        
-                        <a class="panel-close" role="button" data-toggle="collapse" data-target="#panelInfo"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>  
+
+                        <a class="panel-close" role="button" data-toggle="collapse" data-target="#panelInfo"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                     </div>
                 </div>
 
                 <div id="collapseInfo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingInfo">
                     <div class="panel-body">
                         <!-- <a class="panel-body-close visible-xs" role="button" data-toggle="collapse" data-target="#panelInfo"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>      -->
-                        
+
                         <p>This is a great place to describe what your application is about and why it's important.</p>
                     </div>
                 </div>
@@ -189,17 +189,17 @@
             <!-- Search Panel -->
 
             <div id="panelSearch" class="panel panel-default collapse">
-                                
+
                 <div id="headingSearch" class="panel-heading" role="tab">
                     <div class="panel-title">
                         <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseSearch" data-parent="#panelAccordion" aria-expanded="false" aria-controls="collapseSearch"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</a>
 
-                        <a class="panel-close" role="button" data-toggle="collapse" data-target="#panelSearch"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>        
+                        <a class="panel-close" role="button" data-toggle="collapse" data-target="#panelSearch"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                     </div>
                 </div>
-                
+
                 <div id="collapseSearch" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSearch">
-                    <div class="panel-body"> 
+                    <div class="panel-body">
                         <div class="panel-control">
                             <div id="searchDivPanel"></div>
                         </div>
@@ -211,18 +211,18 @@
             <!-- Basemaps Panel -->
 
              <div id="panelBasemaps" class="panel panel-default collapse">
-                     
+
                 <div id="headingBasemaps" class="panel-heading" role="tab">
                     <div class="panel-title">
                         <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBasemaps" aria-expanded="false" data-parent="#panelAccordion"  aria-controls="collapseBasemaps"><span class="glyphicon glyphicon-th-large" aria-hidden="true"></span> Basemaps</a>
 
-                        <a class="panel-close" role="button" data-toggle="collapse" data-target="#panelBasemaps"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>  
+                        <a class="panel-close" role="button" data-toggle="collapse" data-target="#panelBasemaps"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                     </div>
                 </div>
-                
+
                 <div id="collapseBasemaps" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBasemaps">
                     <div class="panel-body">
-                        <select id="selectBasemapPanel" class="form-control">                            
+                        <select id="selectBasemapPanel" class="form-control">
                             <option value="streets" data-vector="vector-streets">Streets</option>
                             <option value="satellite" data-vector="satellite">Satellite</option>
                             <option value="hybrid" data-vector="hybrid">Hybrid</option>
@@ -242,21 +242,21 @@
             <!-- Bookmarks Panel -->
 
             <div id="panelBookmarks" class="panel panel-default collapse">
-            
+
                 <div id="headingBookmarks" class="panel-heading" role="tab">
                   <!-- <div class="panel-title hidden-xs"> -->
                     <div class="panel-title">
 
                     <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseBookmarks" data-parent="#panelAccordion" aria-expanded="false" aria-controls="collapseBookmarks"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Bookmarks</a>
 
-                    <a class="panel-close" role="button" data-toggle="collapse" data-target="#panelBookmarks"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>  
+                    <a class="panel-close" role="button" data-toggle="collapse" data-target="#panelBookmarks"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                   </div>
                 </div>
-             
+
                 <div id="collapseBookmarks" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBookmarks">
                   <div class="panel-body">
                     <!-- <a class="panel-body-close visible-xs" role="button" data-toggle="collapse" data-target="#panelBookmarks"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>   -->
-                    
+
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                       <ol class="carousel-indicators">
                         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -300,31 +300,31 @@
             <!-- Legend Panel -->
 
             <div id="panelLegend" class="panel panel-default collapse">
-            
+
                 <div id="headingLegend" class="panel-heading" role="tab">
                     <!-- <div class="panel-title hidden-xs"> -->
                     <div class="panel-title">
 
                         <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseLegend" aria-expanded="false" data-parent="#panelAccordion" aria-controls="collapseLegend"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Legend</a>
 
-                        <a class="panel-close" role="button" data-toggle="collapse" data-target="#panelLegend"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a> 
+                        <a class="panel-close" role="button" data-toggle="collapse" data-target="#panelLegend"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                     </div>
                 </div>
 
                 <div id="collapseLegend" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingLegend">
                     <div class="panel-body">
                         <!-- <a class="panel-body-close visible-xs" role="button" data-toggle="collapse" data-target="#panelLegend"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a> -->
-                        
+
                         <p>Legend [Coming soon!]</p>
                     </div>
                 </div>
-            
+
             </div>
-            
+
             <!-- Print Panel -->
 
             <div id="panelPrint" class="panel panel-default collapse">
-                        
+
                 <div id="headingPrint" class="panel-heading">
                     <!-- <div class="panel-title hidden-xs"> -->
                     <div class="panel-title">
@@ -333,12 +333,12 @@
                         <a class="panel-close" role="button" data-toggle="collapse" data-target="#panelPrint"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                     </div>
                 </div>
-            
+
                 <div id="collapsePrint" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPrint">
                   <div class="panel-body">
                     <!-- <a class="panel-body-close visible-xs" role="button" data-toggle="collapse" data-target="#panelPrint"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a> -->
 
-                    
+
                     <div class="form-group">
                        <button type="button" class="btn btn-default">Print</button>
                     </div>
@@ -350,14 +350,14 @@
             <!-- Share Panel -->
 
             <div id="panelShare" class="panel panel-default collapse">
-                              
+
                 <div id="headingShare" class="panel-heading">
                   <!-- <div class="panel-title hidden-xs"> -->
                     <div class="panel-title">
 
-                    <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseShare" data-parent="#panelAccordion" aria-expanded="false" aria-controls="collapseShare"><span class="glyphicon glyphicon-share" aria-hidden="true"></span> Share</a>                
+                    <a class="panel-toggle collapsed" role="button" data-toggle="collapse" href="#collapseShare" data-parent="#panelAccordion" aria-expanded="false" aria-controls="collapseShare"><span class="glyphicon glyphicon-share" aria-hidden="true"></span> Share</a>
 
-                    <a class="panel-close" role="button" data-toggle="collapse" data-target="#panelShare"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>  
+                    <a class="panel-close" role="button" data-toggle="collapse" data-target="#panelShare"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                   </div>
                 </div>
 
@@ -374,7 +374,7 @@
             <!-- Settings Panel -->
 
             <div id="panelSettings" class="panel panel-default collapse in">
-                                
+
                 <div id="headingSettings" class="panel-heading">
                     <!-- <div class="panel-title hidden-xs"> -->
                     <div class="panel-title">
@@ -383,7 +383,7 @@
                         <a class="panel-close" role="button" data-toggle="collapse" data-target="#panelSettings"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
                     </div>
                 </div>
-                
+
                 <div id="collapseSettings" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingSettings">
                     <div class="panel-body">
                         <!-- <a class="panel-body-close visible-xs" role="button" data-toggle="collapse" data-target="#panelSettings"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>    -->
@@ -430,7 +430,7 @@
                                             <select id="settingsColor" class="form-control">
                                                 <option value="#fff" data-navstyle="navbar-default" selected>Default</option>
                                                 <option value="#101010" data-navstyle="navbar-inverse">Inverse</option>
-                                                <option value="transparent" data-navstyle="navbar-light">Transparent</option>        
+                                                <option value="transparent" data-navstyle="navbar-light">Transparent</option>
                                                 <option value="#f8f8f8" data-navstyle="navbar-light">Off White</option>
                                                 <option value="#efefef" data-navstyle="navbar-light">Lightest Gray</option>
                                                 <option value="#cccccc" data-navstyle="navbar-light">Lighter Gray</option>
@@ -540,11 +540,11 @@
                                             <button id="settingsResetLayout" class="btn btn-success btn-block">Reset</button>
                                         </div>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
 
         </div> <!-- /.panel-group -->
@@ -581,9 +581,9 @@
     <script>
 
         // ======
-        // ArcGIS 
+        // ArcGIS
         // ======
-        
+
         var map, mapScene, mapView, sceneView, searchWidgetNav, searchWidgetPanel, activeView;
         var vtlayer;
 
@@ -598,17 +598,17 @@
             "esri/geometry/Extent",
             "esri/layers/VectorTileLayer",
 
-            "bootstrap/Collapse", 
+            "bootstrap/Collapse",
             "bootstrap/Dropdown",
             "bootstrap/Tab",
             "bootstrap/Carousel",
             "bootstrap/Tooltip",
-            
+
             "calcite-maps/calcitemapsdojo",
             "calcite-extras/panelsettingsdojo",
             "dojo/domReady!"
         ], function(Map, Basemap, MapView, SceneView, Search, watchUtils, query, xhr, Extent, VectorTileLayer) {
-            
+
 
                 var gSiteId = null
                 var getUrlParameter = function(sParam) {
@@ -624,9 +624,9 @@
                             return sParameterName[1] === undefined ? true : sParameterName[1];
                         }
                     }
-                };              
+                };
                 var cssUrl = function(siteId) {
-                    return "https://opendatadev.arcgis.com/api/v2/sites/" + siteId + "/css/css";
+                  return "https://opendatadev.arcgis.com/api/v2/sites/" + siteId + "/stylesheets/opendata.css";
                 }
                 var appendCSS = function(siteId) {
                     if(siteId === undefined || siteId === null) {
@@ -644,7 +644,7 @@
                         if(calcite !== undefined && calcite !== null) {
                             calcite.remove();
                         }
-                    }, 2000)            
+                    }, 2000)
                     return false;
                 }
                 var styleMap = function(extent, style) {
@@ -662,12 +662,12 @@
 
                     xhr.get({
                       url: "style.json",
-                      load: function(data) { 
-                        var colorPrimary = siteConfig.data.attributes.style["$brand-primary"]
-                        var colorSecondary = siteConfig.data.attributes.style["$brand-secondary"]
-                        
+                      load: function(data) {
+                        var colorPrimary = siteConfig.data.attributes.theme.brand.primary
+                        var colorSecondary = siteConfig.data.attributes.theme.brand.secondary
+
                         data = data.replace(/#{brand-primary}/g, colorPrimary).replace(/#{brand-secondary}/g, colorSecondary);
-                        
+
                         style = JSON.parse(data);
                         console.log("Loaded Style", style)
                         styleMap(extent, style)
@@ -683,22 +683,22 @@
                       load: updateSite,
                       handleAs: "json"
                     });
-                    
+
                     appendCSS(siteId);
                     return false;
                 }
-                getSite(gSiteId = getUrlParameter('site'));      
-                
+                getSite(gSiteId = getUrlParameter('site'));
+
             function renderMap(extent, vectorStyle) {
 
-                // Map 
+                // Map
                 map = new Map({
                     basemap: "gray-vector"
                 });
                 // vectorStyle = "https://www.arcgis.com/sharing/rest/content/items/f96366254a564adda1dc468b447ed956/resources/styles/root.json";
                 // vectorStyle = "style.json"
                 vtlayer = new VectorTileLayer(vectorStyle);
-                map.add(vtlayer); 
+                map.add(vtlayer);
 
                 // var s = {
                 //     "layers": [
@@ -709,9 +709,9 @@
                 //             "type": "background",
                 //             "id": "background"
                 //         }] };
-                // console.log("Style",s)       
+                // console.log("Style",s)
                 // vtlayer.setStyle(s);
-                
+
                 mapView = new MapView({
                     container: "mapViewDiv",
                     map: map,
@@ -719,7 +719,7 @@
                 });
 
                 mapView.popup.anchor = "top";
-             
+
                 mapScene = new Map({
                     basemap: "gray"
                 });
@@ -753,7 +753,7 @@
                     if (property === "searchResults") {
                         search.view = activeView;
                     }
-                }); 
+                });
                 return search;
             }
 
@@ -785,7 +785,7 @@
 
             query("li a[data-toggle='tab']").on("click", function(e) {
                 if (e.target.text === "Map") {
-                    activeView = mapView;                    
+                    activeView = mapView;
                 } else {
                     activeView = sceneView;
                 }
@@ -801,4 +801,3 @@
 
 </body>
 </html>
-
